@@ -40,18 +40,22 @@ class T_communication:
             self.hasContext=0
 
     def getHandle(self):
+            vendors  = [0x06a3, 0x0738]
             # List of supported product ids.
-            products = [0x0cfa, 0x0cd9]
+            products = [0x0cfa, 0x0cd9, 0x1705]
             self.handle = None
-            for product in products:
-                try:
-                    self.handle=self.context.openByVendorIDAndProductID(0x06a3, product)
-                except:
-                    pass
+            for vendor in vendors:
+                for product in products:
+                    print(vendor,product)
+                    try:
+                        self.handle=self.context.openByVendorIDAndProductID(vendor, product)
+                    except Exception as e:
+                        print(e)
+                        pass
 
-                if self.handle:
-                    self.hasHandle=1
-                    break
+                    if self.handle:
+                        self.hasHandle=1
+                        break
             else:
                 # We didn't find handle.
                 self.hasHandle=0
