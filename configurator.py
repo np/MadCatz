@@ -188,7 +188,6 @@ class T_dpi(QObject):
     def __init__(self):
         super().__init__()
         self.dpi=[[None,None],[None,None],[None,None],[None,None]]
-        self.populateDefaultDpiValues()
         self.oldDpi=copy.deepcopy(self.dpi)
 
     def populateDefaultDpiValues(self):
@@ -301,6 +300,8 @@ class T_window(QWidget):
         self.grid.addWidget(self.tabs)
 
         self.dpi=T_dpi()
+        self.com.getDpi(self.dpi)
+        self.dpi.dataHasBeenSent()
         self.t=[]
         for i in range(0,4):
             self.t.append(T_tab(i,self.dpi,self.com))
@@ -313,8 +314,6 @@ class T_window(QWidget):
         self.timer=QBasicTimer()
         self.timer.start(100,self.data)
         self.tabs.currentChanged.connect(self.com.sendMode)
-        self.com.getDpi(self.dpi)
-        self.dpi.dataHasBeenSent()
 
 
 def main():
