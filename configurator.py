@@ -55,7 +55,7 @@ class T_communication:
 
                     if self.handle:
                         self.hasHandle=1
-                        break
+                        return
             else:
                 # We didn't find handle.
                 self.hasHandle=0
