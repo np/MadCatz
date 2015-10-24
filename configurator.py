@@ -167,7 +167,7 @@ class T_data(QWidget):
 
     def pool(self):
         self.dpiMode=self.com.getDpiMode()
-        self.battery=self.com.getBatteryLevel()
+        #self.battery=self.com.getBatteryLevel()
         self.displayResults()
 
     def sendDpi(self):
