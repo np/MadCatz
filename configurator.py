@@ -138,7 +138,8 @@ class T_communication:
             measure=self.handle.controlRead(self.ctrl_request_type, self.ctrl_request,
                                             self.ctrl_value, self.ctrl_index, self.ctrl_length)
             return measure
-        except:
+        except Exception as e:
+            print(e)
             self.hasHandle=0
             return self.ctrl_length*[None]
 
